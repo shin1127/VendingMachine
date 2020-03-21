@@ -106,6 +106,7 @@ public class VendingMachine {
 		int inputNumber = 0;
 		while(true) {
 			try {
+				sc = new Scanner(System.in);
 				inputNumber = sc.nextInt();
 			}catch (Exception e) {
 				System.out.println("数字以外が入力されました。");
