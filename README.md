@@ -47,7 +47,7 @@ System.out.println(productName + "を購入しました。");
   
 - その他
   - if文の条件式について、boolean型変数であれば if(hoge) やif(!foo) などで論理値を表現できるが、<br>
-  "!"の見落としの可能性を考え、if(foo = false)などとした。
+  "!"の見落としの可能性を考え、if(foo == false)などとした。
 </p>
 
 # Development environment
