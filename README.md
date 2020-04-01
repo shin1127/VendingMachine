@@ -30,9 +30,9 @@ JDK 10.0.2
   <p>
 *3 ArrayListもメソッドの引数に入れられることを知った。(ArrayList<型> name)で利用可能。型にはクラス型も入る。<br>
    戻り値が必要な場合、メソッドは単純に記述しただけでは利用できない。returnで値を返す必要がある。<br>
-   可読性の向上のため、一行で記述できる内容でも分けて記述することにもメリットがある。</p>
+   また、可読性の向上のため、一行で記述できる内容でも分けて記述することにもメリットがある。</p>
   <p>
-    例：
+    例：<br>
     String productName = drinklist.get(choiceNumber).getName();<br>
     System.out.println(productName + "を購入しました。");
   </p>
