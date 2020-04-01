@@ -9,9 +9,6 @@
 書籍『スッキリわかるJava入門』での学習が終わったが、学んだ内容を利用して何かを表現することに飢えていた。<br>
 知識を定着させるという意味でも重要であり、その旨を友人に相談したところ、『自販機を模したコンソールアプリケーションの制作』の課題を受け取った。<br>
 
-# Development environment
-JDK 10.0.2
-
 # Learning in the repositry
 
 - while true文と標準入力、例外処理を利用して、適切な入力がなされるまでループする仕組みを作成した。*1
@@ -53,4 +50,5 @@ System.out.println(productName + "を購入しました。");
   "!"の見落としの可能性を考え、if(foo = false)などとした。
 </p>
 
-
+# Development environment
+JDK 10.0.2
