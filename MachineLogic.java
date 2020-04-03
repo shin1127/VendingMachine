@@ -1,5 +1,7 @@
 package 自販機;
 
+import static 自販機.isAlcohol.*;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -79,4 +81,44 @@ public class MachineLogic {
 		}
 		return currentMoney;
 	}
+
+
+	// アルコール飲料が選択された時、年齢確認を行い20歳未満なら購入処理をスキップする
+	public boolean buyAbilityForAge(ArrayList<Drink> drinklist, int choiceType, Scanner sc) {
+		int inputNumber = 0;
+		isAlcohol isAlcohol = drinklist.get(choiceType).getIsAlcohol();
+		if (isAlcohol == ALCOHOL) {
+			System.out.println(
+					"選択した商品はアルコール飲料です。\n20歳以上ですか？"
+					+ "1.はい 2.いいえ");
+
+			while(true) {
+				try {
+					sc = new Scanner(System.in);
+					inputNumber = sc.nextInt();
+				}catch(Exception e) {
+				System.out.println("数字以外が入力されました。");
+				}
+				if (inputNumber == 1 || inputNumber == 2) {
+					break;
+				}
+				System.out.println("無効な入力です。\nもう一度入力してください\n>>");
+				sc = new Scanner(System.in);
+
+			}
+			// 20歳以上の"1"が選択された
+			if (inputNumber == 1) {
+				return true;
+			}
+			// 20歳未満の"2"が選択された
+			else {
+				return false;
+			}
+		}
+		// ソフトドリンクが選択された時の処理
+		else {
+			return true;
+		}
+	}
+
 }
