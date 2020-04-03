@@ -1,5 +1,7 @@
 package 自販機;
 
+import static 自販機.isAlcohol.*;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -11,7 +13,7 @@ public class VendingMachine {
 		int minPrice = 0;  // 商品価格の最小値
 		int currentMoney = 0;  // 自販機内の残金
 		boolean buyAbility = false; // 続けて購入可能かを判定
-		int buyContinue = 0;
+		int buyContinue = 0;  // 続けて購入するかどうかを判定
 		int choiceType = 0;  // 購入時の商品番号の選択
 		Scanner sc = new Scanner(System.in);
 
@@ -20,20 +22,23 @@ public class VendingMachine {
 
 		//商品を設定し、リストに追加する
 
-        Drink coffee = new Drink("コーヒー", 1, 130);
+        Drink coffee = new Drink("コーヒー", 1, 130, SOFTDRINK);
         drinklist.add(coffee);
 
-        Drink water = new Drink("水", 2, 100);
+        Drink water = new Drink("水", 2, 100, SOFTDRINK);
         drinklist.add(water);
 
-        Drink coke = new Drink("コーラ", 3, 160);
+        Drink coke = new Drink("コーラ", 3, 160, SOFTDRINK);
         drinklist.add(coke);
 
-        Drink tea = new Drink("お茶", 4, 120);
+        Drink tea = new Drink("お茶", 4, 120, SOFTDRINK);
         drinklist.add(tea);
 
-        Drink redbull = new Drink("レッドブル", 5, 200);
+        Drink redbull = new Drink("レッドブル", 5, 200, SOFTDRINK);
         drinklist.add(redbull);
+
+        Drink beer = new Drink("ビール", 6, 200, ALCOHOL);
+        drinklist.add(beer);
 
 
 		// 商品価格の最小値を決定
