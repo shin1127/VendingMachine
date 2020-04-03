@@ -12,9 +12,10 @@ public class VendingMachine {
 		ArrayList<Drink> drinklist = new ArrayList<>();  // 商品のクラスを入れる
 		int minPrice = 0;  // 商品価格の最小値
 		int currentMoney = 0;  // 自販機内の残金
-		boolean buyAbility = false; // 続けて購入可能かを判定
+		boolean buyAbilityForMoney = false; // 続けて購入可能な残高かを判定
 		int buyContinue = 0;  // 続けて購入するかどうかを判定
 		int choiceType = 0;  // 購入時の商品番号の選択
+		boolean buyAbilityForAge = false;  // 購入可能な年齢に達しているか判定
 		Scanner sc = new Scanner(System.in);
 
 		MachineLogic logic = new MachineLogic();
@@ -56,14 +57,14 @@ public class VendingMachine {
 
 		// 投入金額が商品の最安値を上回っているか判定
 
-		buyAbility = logic.buyAbility(currentMoney, minPrice);
+		buyAbilityForMoney = logic.buyAbility(currentMoney, minPrice);
 
 		// 初期値0か、「1.続けて購入」を選択する限り購入動作を続ける
 
 		while(buyContinue == 0 || buyContinue == 1){
 
 			// 投入金額が商品の最安値を上回ってなければ終了
-			if(buyAbility == false) {
+			if(buyAbilityForMoney == false) {
 				break;
 			}
 
@@ -76,15 +77,26 @@ public class VendingMachine {
 			System.out.println("購入したい商品の番号を入力してください");
 			choiceType = logic.inputNumber(1, drinklist.size(), sc);
 
-			// 選択した商品が購入可能か判定し、残高を更新
+			// 選択した商品が購入可能か年齢から判定する
 
-			currentMoney = logic.buyProduct(currentMoney, drinklist, choiceType - 1);
+			buyAbilityForAge = logic.buyAbilityForAge(drinklist, choiceType - 1, sc);
+
+			// 選択した商品に対して購入可能年齢に達していれば購入処理を試みる
+
+			if (buyAbilityForAge == true) {
+
+				// 選択した商品が購入可能か残金から判定し、残高を更新
+				currentMoney = logic.buyProduct(currentMoney, drinklist, choiceType - 1);
+			}
+			else {
+				System.out.println("年齢制限の為、選択した商品は購入できません。");
+			}
 
 			// 続けて購入できるか判定
 
-			buyAbility = logic.buyAbility(currentMoney, minPrice);
+			buyAbilityForMoney = logic.buyAbility(currentMoney, minPrice);
 
-			if (buyAbility == true) {
+			if (buyAbilityForMoney == true) {
 
 				// 続けて購入するか選択 1,2以外なら例外処理
 
@@ -96,7 +108,7 @@ public class VendingMachine {
 
 		}  // ループ終了
 
-		if (buyAbility == false) {
+		if (buyAbilityForMoney == false) {
 			System.out.println("残金が足りません。");
 		}
 
