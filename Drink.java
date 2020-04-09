@@ -4,25 +4,28 @@ public class Drink {
 	private String name;
 	private int number;
 	private int price;
-	private isAlcohol isAlcohol;
+	private IsAlcohol isAlcohol;
 
-	public String getName() {
+	public final String getName() {
 		return this.name;
 	}
-	public int getNumber() {
+	public final int getNumber() {
 		return this.number;
 	}
-	public int getPrice() {
+	public final int getPrice() {
 		return this.price;
 	}
-	public isAlcohol getIsAlcohol(){
+	public final IsAlcohol getIsAlcohol(){
 		return this.isAlcohol;
 	}
-
-	public Drink(String name, int number, int price, isAlcohol isAlcohol) {
-		this.name = name;
+	public void setNumber(int number) {
 		this.number = number;
+	}
+
+	public Drink(final String name, final int price, final IsAlcohol isAlcohol) {
+		this.name = name;
 		this.price = price;
 		this.isAlcohol = isAlcohol;
-	}
+    }
 }
+
