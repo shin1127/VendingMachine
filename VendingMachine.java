@@ -6,14 +6,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class VendingMachine {
-    public static <T> void main(final String[] args) {
+    public static void main(final String[] args) {
 
 
         ArrayList<Drink> drinklist = new ArrayList<>();  // 商品のクラスを入れる
         int minPrice = 0;  // 商品価格の最小値
 	    int currentMoney = 0;  // 自販機内の残金
-		boolean buyAbilityForMoney = false; // 続けて購入可能な残高かを判定
-		int buyContinue = 0;  // 続けて購入するかどうかを判定
+		int buyContinue = 0;  // 続けて購入してもらうかどうか決定
 		int choiceType = 0;  // 購入時の商品番号の選択
 		boolean buyAbilityForAge = false;  // 購入可能な年齢に達しているか判定
 		Scanner sc = new Scanner(System.in);
@@ -21,7 +20,7 @@ public class VendingMachine {
 		MachineLogic logic = new MachineLogic();
 
 
-		//商品を設定し、リストに追加する
+		// 商品を設定し、リストに追加する
 
 		drinklist.add(new Drink("コーヒー", 130, SOFTDRINK));
 		drinklist.add(new Drink("水",100, SOFTDRINK));
@@ -30,8 +29,10 @@ public class VendingMachine {
 		drinklist.add(new Drink("レッドブル", 200, SOFTDRINK));
 		drinklist.add(new Drink("ビール", 200, ALCOHOL));
 
-
-
+		// 商品番号を割り振る
+		for (int i = 0; i < drinklist.size(); i++) {
+			drinklist.get(i).setNumber(i + 1);
+		}
 
 
 		// 商品価格の最小値を決定
@@ -41,9 +42,9 @@ public class VendingMachine {
 
 		// ここから自販機の動作
 
-		// お金を投入する
+		// お金を投入してもらう
 
-		System.out.println("お金を投入してください");
+		logic.machineSay(0);
 		currentMoney = logic.inputNumber(0, 0, sc);
 
 
@@ -51,8 +52,8 @@ public class VendingMachine {
 
 		while (buyContinue == 0 || buyContinue == 1){
 
-			// 投入金額が商品の最安値を上回ってなければ終了
-			if (currentMoney - minPrice >= 0 == false) {
+			// 投入金額が商品の最安値を下回れば終了
+			if (currentMoney - minPrice < 0) {
 				break;
 			}
 
@@ -60,9 +61,9 @@ public class VendingMachine {
 
 			logic.displayProduct(drinklist);
 
-			// 商品を選択し購入 商品番号以外なら例外処理
+			// 商品を選択してもらい購入処理をする 商品番号以外なら例外処理
 
-			System.out.println("購入したい商品の番号を入力してください");
+			logic.machineSay(1);
 			choiceType = logic.inputNumber(1, drinklist.size(), sc);
 
 			// 選択した商品が購入可能か年齢から判定する
@@ -83,31 +84,29 @@ public class VendingMachine {
 
 			// 続けて購入できるか判定
 
-			if (currentMoney - minPrice >= 0 == true) {
+			if (currentMoney - minPrice < 0) {
 
-				// 続けて購入するか選択 1,2以外なら例外処理
+				// 続けて購入するかどうか決定してもらう
 
-				System.out.println("続けて購入しますか？\n1"
-						+ ".続けて購入する 2.お釣りを出す");
-
+				logic.machineSay(2);
 				buyContinue = logic.inputNumber(2, 0, sc);
 			}
 			// 残金不足のときの表示
 
 		}  // ループ終了
 
-		if (buyAbilityForMoney == false) {
+		if (currentMoney - minPrice < 0) {
 			System.out.println("残金が足りません。");
 		}
 
 		// 自販機動作終了時の表示
+
 
 		System.out.println(
 				"お釣り" + currentMoney + "円を返金します。"
 				+ "ご利用ありがとうございました。");
 
 		sc.close();
-
 	}
 
 }
