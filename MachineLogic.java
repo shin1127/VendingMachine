@@ -9,9 +9,9 @@ public class MachineLogic {
 
 	public void machineSay(int pattern) {
 
-		String pattern0 = "お金を投入してください";
-		String pattern1 = "購入したい商品の番号を入力してください";
-		String pattern2 = "続けて購入しますか？\n1.続けて購入する 2.お釣りを出す";
+		final String pattern0 = "お金を投入してください";
+		final String pattern1 = "購入したい商品の番号を入力してください";
+		final String pattern2 = "続けて購入しますか？\n1.続けて購入する 2.お釣りを出す";
 
 		String SayWord;
 
@@ -30,7 +30,7 @@ public class MachineLogic {
 	}
 
 
-	// 自販機の数字操作メソッド
+	// 数字を入力してもらうメソッド
 	public int inputNumber(int pattern, int productSize, Scanner sc) {
 
 		int inputNumber = 0;
