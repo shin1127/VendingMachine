@@ -15,6 +15,11 @@
 
 また、新たに獲得する知識や技術についても、積極的にソースコードに組み込み、表現していく。
 
+
+# Qiita / Output
+
+- [クラス型のArrayListから、要素を順に取り出す](https://qiita.com/cordy/items/2dfddd33b8dbebff3907)
+
 # Learning in the repositry
 
 ## while true文と標準入力、例外処理を利用して、適切な入力がなされるまでループする仕組みを作成した。*1
