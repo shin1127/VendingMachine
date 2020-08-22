@@ -19,6 +19,7 @@
 # Qiita / Output
 
 - [クラス型のArrayListから、要素を順に取り出す](https://qiita.com/cordy/items/2dfddd33b8dbebff3907)
+- [Eclipseのヒープサイズを増加させる（メモリ不足エラーを解消する）](https://qiita.com/cordy/items/46895c86715480e1a90c)
 
 # Learning in the repositry
 
